@@ -13,6 +13,7 @@
 		4ADAE4001BE8083F00CC0C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAE3FE1BE8083F00CC0C8B /* Main.storyboard */; };
 		4ADAE4021BE8083F00CC0C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAE4011BE8083F00CC0C8B /* Assets.xcassets */; };
 		4ADAE4051BE8083F00CC0C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAE4031BE8083F00CC0C8B /* LaunchScreen.storyboard */; };
+		4AF3C10F1BEABA4000D0BA9F /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF3C10E1BEABA4000D0BA9F /* MyUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4ADAE4011BE8083F00CC0C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ADAE4041BE8083F00CC0C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ADAE4061BE8083F00CC0C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "/Users/phil/developer/tutorial_ios/RW Games/ZombieConga/ZombieConga/Supporting Files/../Info.plist"; sourceTree = "<absolute>"; };
+		4AF3C10E1BEABA4000D0BA9F /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				4ADAE3FC1BE8083F00CC0C8B /* GameViewController.swift */,
 				4AA9FDA01BE80BD5006F5DD3 /* Supporting Files */,
 				4ADAE4011BE8083F00CC0C8B /* Assets.xcassets */,
+				4AF3C10E1BEABA4000D0BA9F /* MyUtils.swift */,
 			);
 			path = ZombieConga;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				4ADAE3FB1BE8083F00CC0C8B /* GameScene.swift in Sources */,
 				4ADAE3FD1BE8083F00CC0C8B /* GameViewController.swift in Sources */,
 				4ADAE3F71BE8083F00CC0C8B /* AppDelegate.swift in Sources */,
+				4AF3C10F1BEABA4000D0BA9F /* MyUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
