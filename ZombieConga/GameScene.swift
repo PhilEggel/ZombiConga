@@ -56,6 +56,7 @@ class GameScene: SKScene {
         
         moveSprite(zombie, velocity: velocity)
         boundsCheckZombie()
+        rotateSprite(zombie, direction: velocity)
     }
     
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint) {
@@ -67,6 +68,10 @@ class GameScene: SKScene {
         //2
         sprite.position = CGPoint(x: sprite.position.x + amountToMove.x,
             y: sprite.position.y + amountToMove.y)
+    }
+    
+    func rotateSprite(sprite: SKSpriteNode, direction: CGPoint) {
+        sprite.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x)))
     }
     
     func boundsCheckZombie() {
@@ -103,6 +108,8 @@ class GameScene: SKScene {
             y: offset.y / CGFloat(length))
         velocity = CGPoint(x: direction.x * zombieMovePointsPerSec, y: direction.y * zombieMovePointsPerSec)
     }
+    
+   
     
     
     //MARK: - player interaction
