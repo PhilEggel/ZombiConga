@@ -71,9 +71,9 @@
 				4ADAE3FE1BE8083F00CC0C8B /* Main.storyboard */,
 				4ADAE3FA1BE8083F00CC0C8B /* GameScene.swift */,
 				4ADAE3FC1BE8083F00CC0C8B /* GameViewController.swift */,
+				4AF3C10E1BEABA4000D0BA9F /* MyUtils.swift */,
 				4AA9FDA01BE80BD5006F5DD3 /* Supporting Files */,
 				4ADAE4011BE8083F00CC0C8B /* Assets.xcassets */,
-				4AF3C10E1BEABA4000D0BA9F /* MyUtils.swift */,
 			);
 			path = ZombieConga;
 			sourceTree = "<group>";

@@ -13,10 +13,13 @@ class GameScene: SKScene {
     var lastUpdateTime: NSTimeInterval = 0
     var dt: NSTimeInterval = 0
     
+    let zombieRotateRadiansPerSec: CGFloat = 4.0 * π
     let zombieMovePointsPerSec: CGFloat = 480.0
     var velocity = CGPoint.zero
     
     let playableRect: CGRect
+    
+    var lastTouchLocation = CGPoint.zero
     
     override init(size: CGSize) {
         let maxAspectRatio: CGFloat = 16.0 / 9.0
@@ -54,9 +57,16 @@ class GameScene: SKScene {
         lastUpdateTime = currentTime
         print("\(dt*1000) miliseconds since last update")
         
-        moveSprite(zombie, velocity: velocity)
-        boundsCheckZombie()
-        rotateSprite(zombie, direction: velocity)
+        let distToLastTouchLocation = (lastTouchLocation - zombie.position).length()
+        if distToLastTouchLocation <= (zombieMovePointsPerSec * CGFloat(dt)) {
+            zombie.position = lastTouchLocation
+            boundsCheckZombie()
+            velocity = CGPoint.zero
+        } else {
+            moveSprite(zombie, velocity: velocity)
+            boundsCheckZombie()
+            rotateSprite(zombie, direction: velocity)
+        }
     }
     
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint) {
@@ -66,7 +76,16 @@ class GameScene: SKScene {
     }
     
     func rotateSprite(sprite: SKSpriteNode, direction: CGPoint) {
-        sprite.zRotation = direction.angle
+        let currentAngle = sprite.zRotation
+        
+        let shortest = shortestAngleBetween(currentAngle, angle2: direction.angle)
+        var amountToRotate = zombieRotateRadiansPerSec * CGFloat(dt)
+        
+        if fabs(shortest) < amountToRotate {
+            amountToRotate = shortest
+        }
+        
+        sprite.zRotation += amountToRotate * currentAngle.sign()
     }
     
     func boundsCheckZombie() {
@@ -104,6 +123,7 @@ class GameScene: SKScene {
     
     //MARK: - player interaction
     func sceneTouched(touchLocation: CGPoint) {
+        lastTouchLocation = touchLocation
         moveZombieToward(touchLocation)
     }
     
