@@ -44,6 +44,7 @@ class GameScene: SKScene {
         
         zombie.position = CGPoint(x: 400, y: 400)
         addChild(zombie)
+        spawnEnemy()
         
         debugDrawPlayableArea()
     }
@@ -55,7 +56,6 @@ class GameScene: SKScene {
             dt = 0
         }
         lastUpdateTime = currentTime
-        print("\(dt*1000) miliseconds since last update")
         
         let distToLastTouchLocation = (lastTouchLocation - zombie.position).length()
         if distToLastTouchLocation <= (zombieMovePointsPerSec * CGFloat(dt)) {
@@ -69,9 +69,38 @@ class GameScene: SKScene {
         }
     }
     
+    func spawnEnemy() {
+        //1 Create enemy
+        let enemy = SKSpriteNode(imageNamed: "enemy")
+        enemy.position = CGPoint(x: size.width + enemy.size.width / 2, y: size.height / 2)
+        addChild(enemy)
+        
+        //2 Add Action
+        let actionMidMove = SKAction.moveByX(
+            -size.width / 2 - enemy.size.width / 2,
+            y: -CGRectGetHeight(playableRect) / 2 + enemy.size.height / 2,
+            duration: 1.0)
+        
+        let actionMove = SKAction.moveByX(
+            -size.width / 2 - enemy.size.width / 2,
+            y: CGRectGetHeight(playableRect) / 2 - enemy.size.height / 2,
+            duration: 1.0)
+        
+        let wait = SKAction.waitForDuration(0.25)
+        
+        let logMessage = SKAction.runBlock {
+            print("Reached Bottom")
+        }
+        
+        let halfSequence = SKAction.sequence([actionMidMove, logMessage, wait, actionMove])
+        let sequence = SKAction.sequence([halfSequence, halfSequence.reversedAction()])
+        
+        let repeatAction = SKAction.repeatActionForever(sequence)
+        enemy.runAction(repeatAction)
+    }
+    
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint) {
         let amountToMove = velocity * CGFloat(dt)
-        print("Amount to move: \(amountToMove)")
         sprite.position += amountToMove
     }
     
